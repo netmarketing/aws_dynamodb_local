@@ -10,11 +10,12 @@ url="http://dynamodb-local.s3-website-us-west-2.amazonaws.com/dynamodb_local_lat
 rm -rf dynamodb_local_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]*
 
 echo "Downloading latest AWS DynamoDB Local..."
-wget --no-check-certificate $url
+wget --no-check-certificate $url -O dynamodb_local_latest.tar.gz
 
 echo "Installing AWS DynamoDB Local..."
-tar xzvf dynamodb_local_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].tar.gz
-mv dynamodb_local_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] $install_dir/aws_dynamodb_local
+mkdir dynamodb_local_latest
+tar xzvf dynamodb_local_latest.tar.gz -C dynamodb_local_latest
+mv dynamodb_local_latest/* $install_dir/aws_dynamodb_local
 
 if [ -e $initd_dir/$daemon_script ];
 then
